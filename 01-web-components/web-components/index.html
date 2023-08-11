@@ -14,11 +14,18 @@
   <body>
 
     <header-component>Counter App</header-component>
-    <counter-component value="1"></counter-component>
-
+    <counter-component value="1" id="counter-component"></counter-component>
     <div class="btn-set">
-      <button-component type="substract"></button-component>
-      <button-component type="add"></button-component>
+      <button-component type="substract" target="counter-component"></button-component>
+      <button-component type="add" target="counter-component"></button-component>
+
+    </div>
+
+    <h2>Counter 2</h2>
+    <counter-component value="1" id="counter-component2"></counter-component>
+    <div class="btn-set">
+      <button-component type="substract" target="counter-component2"></button-component>
+      <button-component type="add" target="counter-component2"></button-component>
 
     </div>
    
