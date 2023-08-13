@@ -1,4 +1,5 @@
-//creamos el template
+/* Header Component */
+
 const template = document.createElement("template")
 template.innerHTML = `
 <style>
@@ -8,8 +9,8 @@ header{
     justify-content: center;
 }
   h1{
-    color: green;
- 
+    color: yellow;
+    margin-top: 3rem;
   }
 
 </style>

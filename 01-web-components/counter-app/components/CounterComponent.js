@@ -1,3 +1,5 @@
+/* Counter Component */
+
 const template = document.createElement("template") 
 
 template.innerHTML = `

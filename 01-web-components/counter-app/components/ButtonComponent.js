@@ -1,14 +1,16 @@
+/* Button Component */
 const template = document.createElement("template")
 
 template.innerHTML = `
   <style>
     button{
         background-color: blue;
-        padding: 0.5em 1em;
+        padding: 0.8em 1.4em;
         color: white;
         font-weight: bold;
         border: none;
         transition: all ease 0.3s;
+        border-radius: 1rem;
     }
 
     button:hover{
