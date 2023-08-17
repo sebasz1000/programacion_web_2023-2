@@ -1,15 +1,10 @@
-import React from "react"
-import { Menu } from "./Menu"
-import { MenuBrand } from "./MenuBrand"
+import { Menu, MenuBrand } from "./"
+import styles from './Header.module.css'
+
 export function Header({img}){
-    const headerStyles = {
-        display: "flex",
-        justifyContent: "space-between",
-        padding: "2rem"
-    }
  
     return(
-        <header style={headerStyles}>
+        <header className={styles.menu}>
            <MenuBrand img={img} />
            <Menu />          
         </header>

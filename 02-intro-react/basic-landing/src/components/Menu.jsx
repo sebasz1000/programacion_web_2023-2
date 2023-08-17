@@ -1,4 +1,3 @@
-import React from "react"
 
 export function Menu(){
     const menuStyles = {
@@ -6,17 +5,39 @@ export function Menu(){
         listStyle: "none",
         gap: "2rem"
     }
+    
+    const links = [
+        {   
+            id: 1,   
+            href: 'https://www.google.com/?hl=es',
+            literal: 'Google'
+        }, 
+        {   
+            id: 2,
+            href: 'https://www.google.com/?hl=es',
+            literal: 'Bing'
+        },
+        {   
+            id: 3,
+            href: 'https://www.google.com/?hl=es',
+            literal: 'Google'
+        }
+    ]
+
     return(
-    <ul style={menuStyles}>
-        <li>
-           <a href="">Link 1</a> 
-        </li>
-        <li>
-            <a href="">Link 2</a> 
-        </li>
-        <li>
-            <a href="">Link 3</a> 
-        </li>
-    </ul>
+        <nav>
+            <ul style={menuStyles}>
+                {
+                    links.map( ({href, literal, id}) => {
+                        return(
+                            <li key={id}>
+                                  <a href={href}>{literal}</a> 
+                            </li>
+                        )
+                    })
+                }
+         
+            </ul>
+        </nav>
     )
 }
