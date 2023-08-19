@@ -23,7 +23,7 @@ npm i -D standard
 
 ```
 “eslintConfig": {
-  "extends": "standard", 
+  "extends": "./node_modules/standard/eslintrc.json", 
 }
 ``` 
 
@@ -40,5 +40,7 @@ npm i -D standard
 
 > [!NOTE]
 > This settings configuration keys depends of the VS Code version
+
+
 
 ***That's all! Happy Coding! ***
