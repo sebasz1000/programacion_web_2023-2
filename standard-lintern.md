@@ -1,3 +1,9 @@
+# What's a lintern?
+
+In short, a linter is a tool to help you improve your code by analyzing your source code looking for problems.
+
+[Qué es un lintern en programación?](https://keepcoding.io/blog/que-es-un-linter-en-programacion/)
+
 # Standard
 
 Go to the [Standard Npm documentation](https://www.npmjs.com/package/standard) for more info
@@ -31,7 +37,7 @@ npm i -D standard
 
 ``` 
 ...
- "editor.formatOnSave": true,
+ "editor.formatOnSave": false, // By default it's true, deactivate it to avoid standard eslint format conflict
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   }
