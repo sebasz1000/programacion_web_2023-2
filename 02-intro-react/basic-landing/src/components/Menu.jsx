@@ -1,43 +1,40 @@
+export function Menu ({ menu, color }) {
+  const menuStyles = {
+    display: 'flex',
+    listStyle: 'none',
+    gap: '2rem'
+  }
 
-export function Menu(){
-    const menuStyles = {
-        display: "flex",
-        listStyle: "none",
-        gap: "2rem"
-    }
-    
-    const links = [
-        {   
-            id: 1,   
-            href: 'https://www.google.com/?hl=es',
-            literal: 'Google'
-        }, 
-        {   
-            id: 2,
-            href: 'https://www.google.com/?hl=es',
-            literal: 'Bing'
-        },
-        {   
-            id: 3,
-            href: 'https://www.google.com/?hl=es',
-            literal: 'Google'
-        }
-    ]
-
-    return(
-        <nav>
-            <ul style={menuStyles}>
-                {
-                    links.map( ({href, literal, id}) => {
-                        return(
-                            <li key={id}>
-                                  <a href={href}>{literal}</a> 
-                            </li>
-                        )
+  return (
+    <nav>
+      <ul style={menuStyles}>
+        {
+                    menu.map((item) => {
+                      return (<Dropdown key={item.id} item={item} />)
                     })
                 }
-         
-            </ul>
-        </nav>
-    )
+      </ul>
+    </nav>
+  )
+}
+
+function Dropdown ({ item }) {
+  const { id, text, options } = item
+  return (
+    <li key={id}>
+      <button>{text}</button>
+      <DropdownList options={options} />
+    </li>
+  )
+}
+function DropdownList ({ options }) {
+  return (
+    <ul>
+      {
+         options?.map(({ id, text }) => {
+           return (<li onClick={() => window.alert('Click')} key={id}>{text}</li>)
+         })
+     }
+    </ul>
+  )
 }
