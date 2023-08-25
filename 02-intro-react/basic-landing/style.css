@@ -97,6 +97,9 @@ button:focus-visible {
   }
 }
 
+ul{
+  padding: 0;
+}
 
 ul li{
   list-style: none;
