@@ -1,0 +1,14 @@
+form input{
+  background-color: white;
+  margin: 0 2rem;
+  border-radius: 2rem;
+  border: 0;
+  padding: 1rem 2rem;
+  font-size: 1.4rem;
+}
+
+input[type="checkbox"]{
+  scale: 1.4;
+  background-color: white;
+}
+
