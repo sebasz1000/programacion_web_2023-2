@@ -1,29 +1,37 @@
 import { Button } from '../'
 import './List.css'
-export function List () {
+export function List ({ list }) {
   return (
     <ul className='list'>
-      <li className='list-item'>
-        <div>
-          <input type='checkbox' />
-          <h3>Tarea 1</h3>
-        </div>
-        <Button
-          labelText='Delete'
-          type='delete'
-        />
-      </li>
+      {
+        list.map(item =>
+          <ListItem
+            key={item.id}
+            data={item}
+          />)
+      }
 
-      <li className='list-item'>
-        <div>
-          <input type='checkbox' />
-          <h3>Tarea 2</h3>
-        </div>
-        <Button
-          labelText='Delete'
-          type='delete'
-        />
-      </li>
     </ul>
+  )
+}
+
+function ListItem ({ data }) {
+  const { id, title, complete } = data
+  return (
+    <li key={id} className='list-item'>
+      <div>
+        <input
+          type='checkbox'
+          checked={complete}
+        />
+        <h3>
+          {title}
+        </h3>
+      </div>
+      <Button
+        labelText='Delete'
+        type='delete'
+      />
+    </li>
   )
 }

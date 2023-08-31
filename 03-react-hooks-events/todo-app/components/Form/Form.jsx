@@ -1,9 +1,31 @@
 import './Form.css'
-export function Form () {
+import { useState } from 'react'
+
+const initInputValue = ''
+
+export function Form ({ onSubmit }) {
+  const [inputValue, setInputValue] = useState(initInputValue)
+
+  const handleChange = (e) => setInputValue(e.target.value)
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    onSubmit(inputValue)
+    setInputValue(initInputValue)
+  }
+
   return (
-    <form>
-      <input type='text' />
-      <button className='add-btn'>
+    <form onSubmit={handleSubmit}>
+      <input
+        type='text'
+        value={inputValue}
+        onChange={handleChange}
+        placeholder='Hacer tareas...'
+      />
+      <button
+        className='add-btn'
+        type='submit'
+      >
         Add task
       </button>
     </form>
