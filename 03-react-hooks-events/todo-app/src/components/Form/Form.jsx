@@ -6,10 +6,14 @@ const initInputValue = ''
 export function Form ({ onSubmit }) {
   const [inputValue, setInputValue] = useState(initInputValue)
 
-  const handleChange = (e) => setInputValue(e.target.value)
+  const handleChange = (e) =>
+    setInputValue(e.target.value)
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    if (inputValue.trim() === '') {
+      return
+    }
     onSubmit(inputValue)
     setInputValue(initInputValue)
   }

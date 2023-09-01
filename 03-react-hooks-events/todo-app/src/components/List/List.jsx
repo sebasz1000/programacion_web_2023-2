@@ -1,13 +1,16 @@
 import { Button } from '../'
 import './List.css'
-export function List ({ list }) {
+export function List ({ list, onToggle }) {
+  const handleToggle = (todo) => onToggle(todo)
+
   return (
     <ul className='list'>
       {
         list.map(item =>
           <ListItem
+            onToggle={handleToggle}
             key={item.id}
-            data={item}
+            todo={item}
           />)
       }
 
@@ -15,14 +18,25 @@ export function List ({ list }) {
   )
 }
 
-function ListItem ({ data }) {
-  const { id, title, complete } = data
+function ListItem ({ todo, onToggle }) {
+  const { id, title, completed } = todo
+
+  const handleChange = ({ target }) => {
+    onToggle(
+      {
+        completed: target.checked,
+        id
+      } // = data
+    )
+  }
+
   return (
     <li key={id} className='list-item'>
       <div>
         <input
           type='checkbox'
-          checked={complete}
+          checked={completed}
+          onChange={handleChange}
         />
         <h3>
           {title}
