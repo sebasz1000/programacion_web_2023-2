@@ -1,8 +1,27 @@
 import { useState } from 'react'
-import { Form, List } from './components'
+import { Form, List, Filters } from './components'
 
 export default function App () {
   const [todos, setTodos] = useState([])
+  const [filter, setFilter] = useState('all')
+
+  const filters = [
+    {
+      id: crypto.randomUUID(),
+      label: 'All',
+      value: 'all'
+    },
+    {
+      id: crypto.randomUUID(),
+      label: 'Completed',
+      value: 'completed'
+    },
+    {
+      id: crypto.randomUUID(),
+      label: 'Pending',
+      value: 'pending'
+    }
+  ]
 
   const createTodo = (title) => {
     const newTodo = {
@@ -29,6 +48,16 @@ export default function App () {
     setTodos(newTodos)
   }
 
+  const handleDelete = (id) => {
+    const newTodos = todos.filter((item) => item.id !== id)
+    setTodos(newTodos)
+  }
+
+  const handleFilterChange = (filterValue) => {
+    console.log(filterValue)
+    setFilter(filterValue)
+  }
+
   const hasTodos = todos.length > 0
   return (
     <>
@@ -37,10 +66,19 @@ export default function App () {
         <header className='header'>
           <Form onSubmit={createTodo} />
         </header>
+        <Filters
+          filters={filters}
+          onChange={handleFilterChange}
+          currentValue={filter}
+        />
         <main>
           {
            hasTodos
-             ? <List list={todos} onToggle={handleToggle} />
+             ? (<List
+                 list={todos}
+                 onToggle={handleToggle}
+                 onDelete={handleDelete}
+                />)
              : <p>No hay tareas para mostrar</p>
           }
 

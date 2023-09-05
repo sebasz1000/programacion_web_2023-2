@@ -1,7 +1,8 @@
 import { Button } from '../'
 import './List.css'
-export function List ({ list, onToggle }) {
+export function List ({ list, onToggle, onDelete }) {
   const handleToggle = (todo) => onToggle(todo)
+  const handleDelete = (id) => onDelete(id)
 
   return (
     <ul className='list'>
@@ -9,6 +10,7 @@ export function List ({ list, onToggle }) {
         list.map(item =>
           <ListItem
             onToggle={handleToggle}
+            onDelete={handleDelete}
             key={item.id}
             todo={item}
           />)
@@ -18,7 +20,7 @@ export function List ({ list, onToggle }) {
   )
 }
 
-function ListItem ({ todo, onToggle }) {
+function ListItem ({ todo, onToggle, onDelete }) {
   const { id, title, completed } = todo
 
   const handleChange = ({ target }) => {
@@ -28,6 +30,11 @@ function ListItem ({ todo, onToggle }) {
         id
       } // = data
     )
+  }
+
+  const handleDelete = () => {
+    console.log(id)
+    onDelete(id)
   }
 
   return (
@@ -45,6 +52,7 @@ function ListItem ({ todo, onToggle }) {
       <Button
         labelText='Delete'
         type='delete'
+        onClick={handleDelete}
       />
     </li>
   )

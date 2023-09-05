@@ -6,12 +6,13 @@ const initInputValue = ''
 export function Form ({ onSubmit }) {
   const [inputValue, setInputValue] = useState(initInputValue)
 
+  const disableBtn = inputValue.trim() === ''
   const handleChange = (e) =>
     setInputValue(e.target.value)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (inputValue.trim() === '') {
+    if (disableBtn) {
       return
     }
     onSubmit(inputValue)
@@ -29,6 +30,7 @@ export function Form ({ onSubmit }) {
       <button
         className='add-btn'
         type='submit'
+        disabled={disableBtn}
       >
         Add task
       </button>
