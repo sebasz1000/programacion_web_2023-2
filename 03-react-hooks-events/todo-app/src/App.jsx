@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Form, List, Filters } from './components'
+import { Form, List, Filters, Button } from './components'
 
 export default function App () {
   const [todos, setTodos] = useState([])
@@ -7,17 +7,17 @@ export default function App () {
 
   const filters = [
     {
-      id: crypto.randomUUID(),
+      id: 1,
       label: 'All',
       value: 'all'
     },
     {
-      id: crypto.randomUUID(),
+      id: 2,
       label: 'Completed',
       value: 'completed'
     },
     {
-      id: crypto.randomUUID(),
+      id: 3,
       label: 'Pending',
       value: 'pending'
     }
@@ -54,9 +54,18 @@ export default function App () {
   }
 
   const handleFilterChange = (filterValue) => {
-    console.log(filterValue)
     setFilter(filterValue)
   }
+
+  const filteredTodos = todos.filter(todo => {
+    if (filter === 'completed') {
+      return todo.completed
+    }
+    if (filter === 'pending') {
+      return !todo.completed
+    }
+    return todo
+  })
 
   const hasTodos = todos.length > 0
   return (
@@ -75,7 +84,7 @@ export default function App () {
           {
            hasTodos
              ? (<List
-                 list={todos}
+                 list={filteredTodos}
                  onToggle={handleToggle}
                  onDelete={handleDelete}
                 />)
@@ -83,6 +92,14 @@ export default function App () {
           }
 
         </main>
+        <footer style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem 2rem', backgroundColor: '#efefef' }}>
+          <p><strong>3 tareas</strong> completadas de <strong>5</strong></p>
+          <Button
+            type='delete'
+            labelText='Clear all completed'
+            onClick={() => {}}
+          />
+        </footer>
       </div>
     </>
   )

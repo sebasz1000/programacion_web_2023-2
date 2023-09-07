@@ -45,9 +45,11 @@ function ListItem ({ todo, onToggle, onDelete }) {
           checked={completed}
           onChange={handleChange}
         />
-        <h3>
-          {title}
-        </h3>
+        <DashedTodo isCompleted={completed}>
+          <h3>
+            {title}
+          </h3>
+        </DashedTodo>
       </div>
       <Button
         labelText='Delete'
@@ -56,4 +58,15 @@ function ListItem ({ todo, onToggle, onDelete }) {
       />
     </li>
   )
+}
+
+function DashedTodo ({ children, isCompleted }) {
+  if (isCompleted) {
+    return (
+      <del>
+        {children}
+      </del>
+    )
+  }
+  return children
 }
