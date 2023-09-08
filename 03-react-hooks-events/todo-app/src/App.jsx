@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Form, List, Filters, Button } from './components'
+import { Form, List, Filters, Footer } from './components'
 
 export default function App () {
   const [todos, setTodos] = useState([])
@@ -68,6 +68,14 @@ export default function App () {
   })
 
   const hasTodos = todos.length > 0
+
+  const completedTodosCount = todos.filter((item) => item.completed).length
+
+  const clearAllCompleteTask = () => {
+    const newTasks = todos.filter((item) => !item.completed)
+    setTodos(newTasks)
+  }
+
   return (
     <>
       <div className='container'>
@@ -81,25 +89,18 @@ export default function App () {
           currentValue={filter}
         />
         <main>
-          {
-           hasTodos
-             ? (<List
-                 list={filteredTodos}
-                 onToggle={handleToggle}
-                 onDelete={handleDelete}
-                />)
-             : <p>No hay tareas para mostrar</p>
-          }
-
-        </main>
-        <footer style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem 2rem', backgroundColor: '#efefef' }}>
-          <p><strong>3 tareas</strong> completadas de <strong>5</strong></p>
-          <Button
-            type='delete'
-            labelText='Clear all completed'
-            onClick={() => {}}
+          <List
+            showList={hasTodos}
+            list={filteredTodos}
+            onToggle={handleToggle}
+            onDelete={handleDelete}
           />
-        </footer>
+        </main>
+        <Footer
+          totalTodos={todos.length}
+          completedTodosCount={completedTodosCount}
+          onDelete={clearAllCompleteTask}
+        />
       </div>
     </>
   )

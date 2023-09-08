@@ -1,19 +1,21 @@
 import { Button } from '../'
 import './List.css'
-export function List ({ list, onToggle, onDelete }) {
+export function List ({ list, onToggle, onDelete, showList }) {
   const handleToggle = (todo) => onToggle(todo)
   const handleDelete = (id) => onDelete(id)
 
   return (
     <ul className='list'>
       {
-        list.map(item =>
-          <ListItem
-            onToggle={handleToggle}
-            onDelete={handleDelete}
-            key={item.id}
-            todo={item}
-          />)
+        showList
+          ? list.map(item =>
+            <ListItem
+              onToggle={handleToggle}
+              onDelete={handleDelete}
+              key={item.id}
+              todo={item}
+            />)
+          : <p>No hay tareas para mostrar</p>
       }
 
     </ul>
