@@ -1,6 +1,10 @@
 import './Gifs.css'
-export function Gifs ({ gifs }) {
+export function Gifs ({ gifs, error }) {
   const hasGifs = gifs.length > 0
+
+  if (error) {
+    return (<p>{error}</p>)
+  }
 
   if (!hasGifs) {
     return <p>There are no results</p>
