@@ -1,7 +1,7 @@
 import './Form.css'
 import { useState } from 'react'
 
-export function Form ({ onSubmit }) {
+export function Form ({ onSubmit, onChange }) {
   const [query, setQuery] = useState('')
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -14,6 +14,7 @@ export function Form ({ onSubmit }) {
   const handleInputChange = (e) => {
     const { target } = e
     const query = target.value
+    onChange(query)
     setQuery(query)
   }
 
