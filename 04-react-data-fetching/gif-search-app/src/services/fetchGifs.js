@@ -10,7 +10,6 @@ export const fetchGifs = async ({ query, limit }) => {
       return res.json()
     })
     .then(({ data }) => {
-      console.log(data)
       // * Mapping
       const gifsData = data.map(gif => {
         const { id, title, images } = gif

@@ -1,8 +1,9 @@
 import './Form.css'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 export function Form ({ onSubmit, onChange }) {
   const [query, setQuery] = useState('')
+  const inputRef = useRef(null)
   const handleSubmit = (e) => {
     e.preventDefault()
     if (query.trim() === '' || query.trim().length < 2) {
@@ -33,6 +34,7 @@ export function Form ({ onSubmit, onChange }) {
           placeholder='Messi, Colombia...'
           onChange={handleInputChange}
           value={query}
+          ref={inputRef}
         />
       </div>
       <button type='submit'>

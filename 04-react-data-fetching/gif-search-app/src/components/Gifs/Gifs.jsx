@@ -1,5 +1,5 @@
 import './Gifs.css'
-export function Gifs ({ gifs, error, isLoading }) {
+export function Gifs ({ gifs, error, isLoading, query, isFirstTime }) {
   const hasGifs = gifs.length > 0
 
   if (isLoading) {
@@ -15,8 +15,8 @@ export function Gifs ({ gifs, error, isLoading }) {
     return (<p>{error}</p>)
   }
 
-  if (!hasGifs) {
-    return <p>There are no results</p>
+  if (!hasGifs && !isFirstTime) {
+    return <p>There are no results {query}</p>
   }
 
   return (

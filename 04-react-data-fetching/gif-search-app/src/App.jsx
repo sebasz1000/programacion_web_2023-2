@@ -1,5 +1,6 @@
 import './App.css'
-import { useState, useEffect, useCallback } from 'react'
+import debounce from 'just-debounce-it'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { fetchGifs } from './services/fetchGifs'
 // import { gifsMock } from './mocks/gifs'
 import { Form, Header, Gifs } from './components'
@@ -9,27 +10,35 @@ function App () {
   const [error, setError] = useState(null)
   const [gifs, setGifs] = useState([])
   const [isLoading, setIsLoading] = useState(false)
-  const handleFormSubmit = (query) => {
-    setQuery(query)
-  }
+  const isFirstTime = useRef(true)
 
-  const handleOnChange = (query) => {
-    setQuery(query)
-  }
-
-  const getGifs = useCallback(() => {
+  const handleUserSubmit = (query) => {
     setIsLoading(true)
-    fetchGifs({ query, limit: 10 })
-      .then(gifs => setGifs(gifs))
-      .catch(e =>
-        setError('Sorry, we had some issues over here!'))
-      .finally(() => setIsLoading(false))
-  }, [])
+    getGifs(query)
+    setQuery(query)
+  }
+
+  console.log(isFirstTime)
+  useEffect(() => {
+    if (isFirstTime.current) {
+      isFirstTime.current = (query === '')
+    }
+  }, [query])
+
+  const getGifs = useCallback(
+    debounce((query) => {
+      fetchGifs({ query, limit: 10 })
+        .then(gifs => setGifs(gifs))
+        .catch(e =>
+          setError('Sorry, we had some issues over here!'))
+        .finally(() => setIsLoading(false))
+    }, 300)
+    , [])
 
   // * Permite ejecutar funciones asincrónicas
-  useEffect(() => {
-    getGifs()
-  }, [query])
+  /* useEffect(() => {
+    getGifs(query)
+  }, [query]) */
 
   useEffect(() => {
     console.log('Get Gifs volvio a definirse')
@@ -40,13 +49,15 @@ function App () {
       <Header title='Gif Search App' />
       <main>
         <Form
-          onSubmit={handleFormSubmit}
-          onChange={handleOnChange}
+          onSubmit={handleUserSubmit}
+          onChange={handleUserSubmit}
         />
         <Gifs
           gifs={gifs}
           error={error}
           isLoading={isLoading}
+          query={query}
+          isFirstTime={isFirstTime.current}
         />
       </main>
     </>
