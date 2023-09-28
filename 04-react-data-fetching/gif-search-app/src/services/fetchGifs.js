@@ -1,6 +1,9 @@
 import { Gif } from '../models/gif.model'
 const API_KEY = import.meta.env.VITE_GIPHY_KEY
 const BASE_URL = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}`
+
+// * Putting fetching services within its own file as a service lets this service to be reused in other apps
+// ! Fetching services should be as part of a component responsibility
 export const fetchGifs = async ({ query, limit }) => {
   return fetch(`${BASE_URL}&q=${query}&limit=${limit}`)
     .then(res => {
