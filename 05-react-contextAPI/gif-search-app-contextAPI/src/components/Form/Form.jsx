@@ -1,13 +1,16 @@
 import './Form.css'
 import { useForm } from '../../hooks/useForm'
+import { useApp } from '../../hooks/useApp'
 
-export function Form ({ onSubmit, onChange }) {
+export function Form () {
+  const { handleUserSubmit } = useApp()
+
   const {
     handleSubmit,
     handleInputChange,
     query,
     inputRef
-  } = useForm(onChange, onSubmit)
+  } = useForm(handleUserSubmit)
 
   return (
     <form

@@ -1,5 +1,11 @@
 import './Footer.css'
-export function Footer ({ gifs, query }) {
+import { useApp } from '../../hooks/useApp'
+export function Footer () {
+  const {
+    query,
+    gifs
+  } = useApp()
+
   if (query === '') {
     return null
   }

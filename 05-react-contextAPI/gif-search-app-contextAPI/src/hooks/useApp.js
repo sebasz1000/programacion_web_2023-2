@@ -1,14 +1,27 @@
-import { useState, useRef, useEffect, useCallback } from 'react'
+import { useEffect, useCallback, useContext } from 'react'
 import { fetchGifs } from '../services/fetchGifs'
 import debounce from 'just-debounce-it'
+import { GifsContext } from '../context/GifsContext'
 
 // * Custom hook refactors component logic
 export const useApp = () => {
-  const [query, setQuery] = useState('')
-  const [error, setError] = useState(null)
-  const [gifs, setGifs] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-  const isFirstTime = useRef(true)
+  const context = useContext(GifsContext)
+
+  if (!context) {
+    throw new Error('This component sould be within a GifsContextrovider Component')
+  }
+
+  const {
+    query,
+    setQuery,
+    gifs,
+    setGifs,
+    error,
+    setError,
+    isLoading,
+    setIsLoading,
+    isFirstTime
+  } = context
 
   const handleUserSubmit = (query) => {
     setIsLoading(true)
@@ -34,15 +47,6 @@ export const useApp = () => {
         .finally(() => setIsLoading(false))
     }, 300)
     , [])
-
-  // * useEffect lets asyncronous function excecution (async & await)
-  /* useEffect(() => {
-      getGifs(query)
-    }, [query]) */
-
-  useEffect(() => {
-    console.log('Get Gifs volvio a definirse')
-  }, [getGifs])
 
   return {
     handleUserSubmit,

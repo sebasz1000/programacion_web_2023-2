@@ -4,7 +4,7 @@ import { useState, useRef } from 'react'
 // * Here useForm requires onSubmit and onChange params to be supplied by component consumer in order to use ir within its logic
 // ? useForm parameters doesnt requires to be deestructured( !!they are not props)
 
-export const useForm = (onSubmit, onChange) => {
+export const useForm = (handleUserSubmit) => {
   const [query, setQuery] = useState('')
   const inputRef = useRef(null)
 
@@ -14,14 +14,14 @@ export const useForm = (onSubmit, onChange) => {
     if (trimmedQuery === '' || trimmedQuery.length < 2) {
       return
     }
-    onSubmit(query)
+    handleUserSubmit(query)
   }
 
   const handleInputChange = (e) => {
     const { target } = e
     const query = target.value
     const trimmedQuery = query.trim()
-    onChange(trimmedQuery)
+    handleUserSubmit(trimmedQuery)
     setQuery(trimmedQuery)
   }
 

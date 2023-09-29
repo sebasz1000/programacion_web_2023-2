@@ -1,5 +1,13 @@
+import { useApp } from '../../hooks/useApp'
 import './Gifs.css'
-export function Gifs ({ gifs, error, isLoading, query, isFirstTime }) {
+export function Gifs () {
+  const {
+    query,
+    gifs,
+    error,
+    isLoading,
+    isFirstTime
+  } = useApp()
   const hasGifs = gifs.length > 0
 
   if (isLoading) {
