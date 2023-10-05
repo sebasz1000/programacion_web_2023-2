@@ -1,0 +1,10 @@
+.filters{
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    gap: 2rem;
+}
+.filters li{
+    display: flex;
+    gap: .5rem;
+}
