@@ -6,8 +6,8 @@ export function List () {
   const {
     hasTodos,
     filteredTodos,
-    handleToggle,
-    handleDelete
+    toggleTodo,
+    deleteTodo
   } = useTodos()
 
   return (
@@ -16,8 +16,8 @@ export function List () {
         hasTodos
           ? filteredTodos.map(item =>
             <ListItem
-              onToggle={handleToggle}
-              onDelete={handleDelete}
+              onToggle={toggleTodo}
+              onDelete={deleteTodo}
               key={item.id}
               todo={item}
             />)
@@ -41,7 +41,6 @@ function ListItem ({ todo, onToggle, onDelete }) {
   }
 
   const handleDelete = () => {
-    console.log(id)
     onDelete(id)
   }
 

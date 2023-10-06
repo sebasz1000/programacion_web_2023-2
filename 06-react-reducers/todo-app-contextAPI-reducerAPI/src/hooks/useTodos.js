@@ -10,7 +10,11 @@ export const useTodos = (initTodosState) => {
 
   const {
     todos,
-    setTodos,
+    createTodo,
+    deleteTodo,
+    toggleTodo,
+    clearAllTodos,
+    // setTodos,
     filter,
     setFilter
   } = todosContext
@@ -20,7 +24,7 @@ export const useTodos = (initTodosState) => {
     window.localStorage.setItem('todos', JSON.stringify(todos))
   }, [todos])
 
-  const createTodo = (title) => {
+  /* const createTodo = (title) => {
     const newTodo = {
       id: crypto.randomUUID(),
       title,
@@ -50,10 +54,14 @@ export const useTodos = (initTodosState) => {
     setTodos(newTodos)
   }
 
+  const clearAllCompleteTask = () => {
+    const newTasks = todos.filter((item) => !item.completed)
+    setTodos(newTasks)
+  }
+  */
   const handleFilterChange = (filterValue) => {
     setFilter(filterValue)
   }
-
   const filteredTodos = todos.filter(todo => {
     if (filter === 'completed') {
       return todo.completed
@@ -68,21 +76,16 @@ export const useTodos = (initTodosState) => {
 
   const completedTodosCount = todos.filter((item) => item.completed).length
 
-  const clearAllCompleteTask = () => {
-    const newTasks = todos.filter((item) => !item.completed)
-    setTodos(newTasks)
-  }
-
   return {
     filter,
     todos,
     createTodo,
-    handleToggle,
-    handleDelete,
+    toggleTodo,
+    deleteTodo,
+    clearAllTodos,
     handleFilterChange,
     filteredTodos,
     hasTodos,
-    completedTodosCount,
-    clearAllCompleteTask
+    completedTodosCount
   }
 }

@@ -5,7 +5,7 @@ export function Footer () {
   const {
     todos,
     completedTodosCount,
-    clearAllCompleteTask
+    clearAllTodos
   } = useTodos()
 
   const footerStyle = {
@@ -27,7 +27,7 @@ export function Footer () {
         className='bg-transparent text-red text-small'
         type='delete'
         labelText='Clear all completed'
-        onClick={clearAllCompleteTask}
+        onClick={clearAllTodos}
       />
     </footer>
   )
