@@ -1,0 +1,10 @@
+
+.is-current-page button{
+    background-color: blue;
+    pointer-events: none;
+    color: white;
+}
+.is-hover{
+    background-color: yellow;
+    color: black;
+}

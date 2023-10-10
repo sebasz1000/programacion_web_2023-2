@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import './Menu.css'
 export function Menu ({ menu, color }) {
   const menuStyles = {
@@ -23,13 +24,7 @@ export function Menu ({ menu, color }) {
 function Dropdown ({ item }) {
   // ! useState devuelve un arreglo
   const [showList, setShowList] = useState(false)
-  const { id, text, options } = item
-
-  // ! Estilos condicionales
-  const buttonStyle = {
-    backgroundColor: (showList ? 'blue' : 'white'),
-    color: (showList ? 'white' : 'black')
-  }
+  const { id, text, options, path } = item
 
   // ! Ejemplo de setState recibiendo un valor
   const showDropdownList = (e) => setShowList(true)
@@ -38,7 +33,11 @@ function Dropdown ({ item }) {
   const toggleState = () => setShowList((prevState) => !prevState)
 
   // ! ClassName condicional para manejar estilos
-  const btnClassName = showList ? 'isActive' : ''
+  const btnClassName = showList ? 'is-hover' : ''
+
+  const getIsCurrentPage = ({ isActive }) => {
+    return isActive ? 'is-current-page' : ''
+  }
 
   console.log('Me renderince Dropdown')
   return (
@@ -47,14 +46,19 @@ function Dropdown ({ item }) {
       onMouseLeave={toggleState}
       style={{ position: 'relative' }}
     >
-      <button
-        type='button'
+      <NavLink
+        to={path}
+        className={getIsCurrentPage}
         onMouseEnter={showDropdownList}
         onClick={toggleState}
-        className={btnClassName}
       >
-        {text}
-      </button>
+        <button
+          type='button'
+          className={btnClassName}
+        >
+          {text}
+        </button>
+      </NavLink>
       {/* ! Renderizado condicional segun el valor del estado */}
       {
         showList
@@ -74,7 +78,7 @@ function DropdownList ({ options }) {
     gap: '0.8rem',
     top: '42px',
     width: '100%',
-    backgroundColor: 'gray',
+    backgroundColor: '#e4e4e4',
     padding: '0.8rem 0.3em'
   }
   return (

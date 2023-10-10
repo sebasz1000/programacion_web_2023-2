@@ -1,11 +1,20 @@
 import React from 'react'
-import { Header, Body, Footer } from './components'
+import { Header, Footer } from './components'
+import { Routes, Route } from 'react-router-dom'
+import { HomePage, AboutUsPage, ContactUsPage, PageNotFound } from './pages'
+
 function App () {
-  const imgUrl = 'https://www.icesi.edu.co/biblioteca/wp-content/uploads/2022/02/logo_icesi.png'
   return (
     <>
-      <Header img={imgUrl} />
-      <Body />
+      <Header />
+      <main>
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/aboutus' element={<AboutUsPage />} />
+          <Route path='/contactus' element={<ContactUsPage />} />
+          <Route path='/*' element={<PageNotFound />} />
+        </Routes>
+      </main>
       <Footer />
     </>
   )
