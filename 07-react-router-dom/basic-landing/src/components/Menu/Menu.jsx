@@ -1,5 +1,4 @@
 import { Dropdown } from './Dropdown'
-import './Menu.css'
 export function Menu ({ menu, color }) {
   const menuStyles = {
     display: 'flex',
