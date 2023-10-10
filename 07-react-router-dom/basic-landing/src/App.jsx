@@ -9,10 +9,22 @@ function App () {
       <Header />
       <main>
         <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route path='/aboutus' element={<AboutUsPage />} />
-          <Route path='/contactus' element={<ContactUsPage />} />
-          <Route path='/*' element={<PageNotFound />} />
+          <Route
+            path='/'
+            element={<HomePage />}
+          />
+          <Route
+            path='/aboutus'
+            element={<AboutUsPage />}
+          />
+          <Route
+            path='/contactus'
+            element={<ContactUsPage />}
+          />
+          <Route
+            path='/*'
+            element={<PageNotFound />}
+          />
         </Routes>
       </main>
       <Footer />

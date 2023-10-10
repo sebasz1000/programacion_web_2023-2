@@ -1,11 +1,14 @@
+import { Link } from 'react-router-dom'
 export function MenuBrand ({ img }) {
   return (
     <div>
-      <img
-        src={img}
-        width='200px'
-        height='auto'
-      />
+      <Link to='/'>
+        <img
+          src={img}
+          width='200px'
+          height='auto'
+        />
+      </Link>
     </div>
   )
 }

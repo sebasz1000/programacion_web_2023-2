@@ -1,6 +1,7 @@
-import { Dropdown } from './Dropdown'
 import './Menu.css'
-export function Menu ({ menu, color }) {
+import { Dropdown } from './Menu/Dropdown'
+
+export function Menu ({ menu }) {
   const menuStyles = {
     display: 'flex',
     listStyle: 'none',
