@@ -4,12 +4,18 @@ import { NavLink } from 'react-router-dom'
 
 export function Dropdown ({ item }) {
   const [showList, setShowList] = useState(false)
-  const { id, text, options, path } = item
+  const { id, text, options, path, disablePath } = item
 
   const showDropdownList = (e) => setShowList(true)
 
   const toggleState = () => setShowList((prevState) => !prevState)
 
+  const handleClick = (e) => {
+    if (disablePath) {
+      e.preventDefault()
+    }
+    toggleState()
+  }
   const getIsCurrentPage = ({ isActive }) => {
     return isActive ? 'is-current-page' : ''
   }
@@ -24,7 +30,7 @@ export function Dropdown ({ item }) {
         to={path}
         className={getIsCurrentPage}
         onMouseEnter={showDropdownList}
-        onClick={toggleState}
+        onClick={handleClick}
       >
         <button
           type='button'
@@ -59,15 +65,15 @@ function DropdownList ({ options }) {
       ? (
         <ul style={listStyle}>
           {
-            options?.map(({ id, text }) => {
+            options?.map(({ id, text, path }) => {
               return (
                 <li
                   key={id}
                   className='dropdown-list-item'
                 >
-                  <a href='#'>
+                  <NavLink to={path}>
                     {text}
-                  </a>
+                  </NavLink>
                 </li>
               )
             })

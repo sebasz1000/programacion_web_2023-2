@@ -3,31 +3,44 @@ export const headerNavLinks = [
     id: 1,
     text: 'Sobre Nosotros',
     options: null,
-    path: '/aboutus'
+    path: '/aboutus',
+    disablePath: false
   },
   {
     id: 2,
+    text: 'Proyectos',
+    options: null,
+    path: '/projects',
+    disablePath: false
+  },
+  {
+    id: 3,
     text: 'Servicios',
-    path: '',
+    path: '/services',
+    disablePath: true,
     options: [
       {
         id: crypto.randomUUID(),
-        text: 'Consultoria Web'
+        text: 'Consultoria Web',
+        path: '/services/web-consulting'
       },
       {
         id: crypto.randomUUID(),
-        text: 'Auditoria'
+        text: 'Auditoria',
+        path: '/services/audit'
       },
       {
         id: crypto.randomUUID(),
-        text: 'Diseño de Branding'
+        text: 'Diseño de Branding',
+        path: '/services/branding-design'
       }
     ]
   },
   {
-    id: 3,
+    id: 4,
     text: 'Contactenos',
     path: '/contactus',
-    options: null
+    options: null,
+    disablePath: false
   }
 ]
