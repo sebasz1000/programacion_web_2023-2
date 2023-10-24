@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
-import { HomePage, AboutUsPage, ContactUsPage, PageNotFound, ProjectsPage } from './pages'
+import { HomePage, AboutUsPage, ContactUsPage, PageNotFound, ProjectsPage, SecretPage } from './pages'
 import { ServicesRouter } from './routers/ServicesRouter'
 import { ProjectDetail } from './pages/ProjectDetail'
 
@@ -30,6 +30,10 @@ export function AppRouter () {
         <Route
           path='/contactus'
           element={<ContactUsPage />}
+        />
+        <Route
+          path='/secret-page'
+          element={<SecretPage />}
         />
         <Route
           path='/*'

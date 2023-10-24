@@ -42,5 +42,12 @@ export const headerNavLinks = [
     path: '/contactus',
     options: null,
     disablePath: false
+  },
+  {
+    id: 5,
+    text: 'Secret Page',
+    path: '/secret-page',
+    options: null,
+    disablePath: false
   }
 ]
