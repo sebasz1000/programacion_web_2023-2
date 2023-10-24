@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import { UserRouter } from './user/routers/UserRouter'
+import { LoginPage } from './auth/pages/LoginPage'
 
 //* App Router defines where use should be sent (/login | /any-other-path)
 export function AppRouter () {
@@ -11,7 +12,7 @@ export function AppRouter () {
         }
         <Route
           path='/login'
-          element={<></>}
+          element={<LoginPage />}
         />
         <Route
           path='/*'

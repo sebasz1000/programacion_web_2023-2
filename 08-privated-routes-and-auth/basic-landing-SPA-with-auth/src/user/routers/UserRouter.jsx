@@ -3,10 +3,13 @@ import { HomePage, AboutUsPage, ContactUsPage, PageNotFound, ProjectsPage, Proje
 import { Header, Footer } from '../components'
 import { ServicesRouter } from './ServicesRouter'
 import { PrivateRoute } from './PrivateRoute'
+import { useAuth } from '../../auth/hooks/useAuth'
 
 //! HINT for PrivateRoute below!!
 //* User Router defines every page route ay REGULAR USER can visit (private pages user can access to included)
 export function UserRouter () {
+  const { isLogged } = useAuth()
+  console.log('isLogged state value: ', isLogged)
   return (
     <>
       <Header />
