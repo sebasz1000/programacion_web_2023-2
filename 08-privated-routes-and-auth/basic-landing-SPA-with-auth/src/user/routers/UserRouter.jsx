@@ -2,7 +2,9 @@ import { Routes, Route } from 'react-router-dom'
 import { HomePage, AboutUsPage, ContactUsPage, PageNotFound, ProjectsPage, ProjectDetail, SecretPage } from '../pages'
 import { Header, Footer } from '../components'
 import { ServicesRouter } from './ServicesRouter'
+import { PrivateRoute } from './PrivateRoute'
 
+//! HINT for PrivateRoute below!!
 //* User Router defines every page route ay REGULAR USER can visit (private pages user can access to included)
 export function UserRouter () {
   return (
@@ -35,7 +37,14 @@ export function UserRouter () {
         />
         <Route
           path='/secret-page'
-          element={<SecretPage />}
+          element={
+            //* PrivateRoute wraps the Page element to be protected within as a children
+            //* PrivateRoute must evaluate if isLogged is true/false
+            //* if isLogged is true, should return the element that is wrapping within
+            <PrivateRoute>
+              <SecretPage />
+            </PrivateRoute>
+        }
         />
         <Route
           path='/*'
