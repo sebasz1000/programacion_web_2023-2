@@ -1,13 +1,11 @@
 import React from 'react'
-import { Header, Footer } from './components'
 import { AppRouter } from './AppRouter'
 
+//* App is pretty clean!!
 function App () {
   return (
     <>
-      <Header />
       <AppRouter />
-      <Footer />
     </>
   )
 }

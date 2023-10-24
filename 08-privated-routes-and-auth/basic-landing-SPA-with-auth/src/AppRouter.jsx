@@ -1,43 +1,18 @@
 import { Routes, Route } from 'react-router-dom'
-import { HomePage, AboutUsPage, ContactUsPage, PageNotFound, ProjectsPage, SecretPage } from './pages'
-import { ServicesRouter } from './routers/ServicesRouter'
-import { ProjectDetail } from './pages/ProjectDetail'
+import { UserRouter } from './user/routers/UserRouter'
 
+//* App Router defines where use should be sent (/login | /any-other-path)
 export function AppRouter () {
   return (
     <main>
       <Routes>
         <Route
-          path='/'
-          element={<HomePage />}
-        />
-        <Route
-          path='/aboutus'
-          element={<AboutUsPage />}
-        />
-        <Route
-          path='/projects'
-          element={<ProjectsPage />}
-        />
-        <Route
-          path='/projects/project/:title'
-          element={<ProjectDetail />}
-        />
-        <Route
-          path='/services/*'
-          element={<ServicesRouter />}
-        />
-        <Route
-          path='/contactus'
-          element={<ContactUsPage />}
-        />
-        <Route
-          path='/secret-page'
-          element={<SecretPage />}
+          path='/login'
+          element={<></>}
         />
         <Route
           path='/*'
-          element={<PageNotFound />}
+          element={<UserRouter />}
         />
       </Routes>
     </main>
