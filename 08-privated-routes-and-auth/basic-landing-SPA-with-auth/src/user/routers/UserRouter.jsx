@@ -40,7 +40,7 @@ export function UserRouter () {
           element={
             //* PrivateRoute wraps the Page element to be protected within as a children
             //* PrivateRoute must evaluate if isLogged is true/false
-            //* if isLogged is true, should return the element that is wrapping within
+            //* if isLogged is true, should return the element that it is wrapping within
             <PrivateRoute>
               <SecretPage />
             </PrivateRoute>

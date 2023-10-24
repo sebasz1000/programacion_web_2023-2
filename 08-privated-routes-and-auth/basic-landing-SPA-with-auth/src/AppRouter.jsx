@@ -6,6 +6,9 @@ export function AppRouter () {
   return (
     <main>
       <Routes>
+        {
+          //* /login should send to Login Page
+        }
         <Route
           path='/login'
           element={<></>}
