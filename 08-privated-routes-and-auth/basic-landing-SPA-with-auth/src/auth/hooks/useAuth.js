@@ -8,10 +8,14 @@ export const useAuth = () => {
     throw new Error('This component should be wrapped within AuthContextProvider')
   }
 
-  const { isLogged, onLogin, onLogout } = context
+  const { isLogged, signIn, logOut, passwordError, credentialsError, isLoading, auth } = context
   return {
+    credentialsError,
+    passwordError,
     isLogged,
-    onLogin,
-    onLogout
+    isLoading,
+    auth,
+    signIn,
+    logOut
   }
 }

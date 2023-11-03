@@ -1,7 +1,7 @@
 import { useAuth } from '../../../auth/hooks/useAuth'
 import { Dropdown } from './Dropdown'
 export function Menu ({ menu, color }) {
-  const { onLogout, isLogged } = useAuth()
+  const { logOut, isLogged } = useAuth()
   const menuStyles = {
     display: 'flex',
     listStyle: 'none',
@@ -38,7 +38,7 @@ export function Menu ({ menu, color }) {
       )
     })
   }
-  const logout = () => onLogout()
+  const logout = () => logOut()
 
   return (
     <nav>

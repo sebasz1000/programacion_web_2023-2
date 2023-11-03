@@ -9,7 +9,7 @@ import { useAuth } from '../../auth/hooks/useAuth'
 //* User Router defines every page route ay REGULAR USER can visit (private pages user can access to included)
 export function UserRouter () {
   const { isLogged } = useAuth()
-  console.log('isLogged state value: ', isLogged)
+
   return (
     <>
       <Header />
