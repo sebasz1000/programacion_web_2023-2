@@ -41,25 +41,24 @@ export function AuthContextProvider ({ children }) {
       return
     }
 
-    try {
-      setIsLoading(true)
-      await createUserWithEmailAndPassword(auth, email, password)
-    } catch (e) {
-      // ** If user email is already in firebase **** //
-      if (e.code === 'auth/email-already-in-use') {
-        signInWithEmailAndPassword(auth, email, password)
-          .catch(({ code }) => {
-            if (code === 'auth/invalid-login-credentials') {
-              setCredentialsError(`Wrong password for user ${email}`)
-            }
-            throw new Error(e)
-          })
-          .finally(() => setIsLoading(false))
-        return
-      }
-      setIsLoading(false)
-      throw new Error(`Error authentication with Firebase: ${e}`)
-    }// catch
+    setIsLoading(true)
+    createUserWithEmailAndPassword(auth, email, password)
+      .catch((e) => {
+        // ** If user email is already in firebase **** //
+        if (e.code === 'auth/email-already-in-use') {
+          signInWithEmailAndPassword(auth, email, password)
+            .catch(({ code }) => {
+              if (code === 'auth/invalid-login-credentials') {
+                setCredentialsError(`Wrong password for user ${email}`)
+              }
+              throw new Error(e)
+            })
+          return
+        }
+        setIsLoading(false)
+        throw new Error(`Error authentication with Firebase: ${e}`)
+      })
+      .finally(() => setIsLoading(false))
   }
 
   const logOut = () => {
