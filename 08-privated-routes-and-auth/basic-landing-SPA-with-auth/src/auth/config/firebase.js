@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, GoogleAuthProvider } from 'firebase/auth'
+import { getFirestore } from 'firebase/firestore'
 
 const FIREBASE_API_KEY = import.meta.env.VITE_FIREBASE_API_KEY
 const FIREBASE_AUTH_DOMAIN = import.meta.env.VITE_FIREBASE_AUTH_DOMAIN
@@ -24,3 +25,5 @@ const app = initializeApp(firebaseConfig)
 // Creates a google Auth provider object
 export const auth = getAuth(app)
 export const googleProvider = new GoogleAuthProvider()
+// Now we can get all firestore database info
+export const db = getFirestore(app)
