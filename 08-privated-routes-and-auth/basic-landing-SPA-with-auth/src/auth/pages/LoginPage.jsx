@@ -5,6 +5,7 @@ import { Form } from '../components/Form'
 export function LoginPage () {
   const {
     signIn,
+    signInWithGoogle,
     passwordError,
     isLoading,
     credentialsError,
@@ -33,6 +34,7 @@ export function LoginPage () {
 
   const gotoHomePage = () => navigate('/')
 
+  const handleGoogleSignIn = () => signInWithGoogle()
   return (
     <>
       <h1>Login Page</h1>
@@ -56,6 +58,9 @@ export function LoginPage () {
           ? <p>{passwordError}</p>
           : null
       }
+      <section>
+        <button onClick={handleGoogleSignIn}>Sign in with Google</button>
+      </section>
       <p>
         Go to <a href='' onClick={gotoHomePage}>Home Page</a>
       </p>

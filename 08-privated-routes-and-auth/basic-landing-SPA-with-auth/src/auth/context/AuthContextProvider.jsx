@@ -1,5 +1,5 @@
-import { auth } from '../config/firebase'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
+import { auth, googleProvider } from '../config/firebase'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInWithPopup } from 'firebase/auth'
 import { useState, useEffect } from 'react'
 import { AuthContext } from './AuthContext'
 
@@ -61,6 +61,14 @@ export function AuthContextProvider ({ children }) {
       .finally(() => setIsLoading(false))
   }
 
+  const signInWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider)
+    } catch (e) {
+      throw new Error('There was an error signin with google pop up')
+    }
+  }
+
   const logOut = () => {
     setIsLoading(true)
     signOut(auth)
@@ -72,6 +80,7 @@ export function AuthContextProvider ({ children }) {
     <AuthContext.Provider value={{
       isLogged,
       signIn,
+      signInWithGoogle,
       logOut,
       isLoading,
       passwordError,

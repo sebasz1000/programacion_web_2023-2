@@ -1,7 +1,12 @@
 import { useAuth } from '../../../auth/hooks/useAuth'
 import { Dropdown } from './Dropdown'
 export function Menu ({ menu, color }) {
-  const { logOut, isLogged } = useAuth()
+  const {
+    logOut,
+    isLogged,
+    auth
+  } = useAuth()
+  console.log(auth?.currentUser?.photoURL)
   const menuStyles = {
     display: 'flex',
     listStyle: 'none',
@@ -46,6 +51,11 @@ export function Menu ({ menu, color }) {
         {getMenuItems()}
         {getLogoutBtn()}
       </ul>
+      <img
+        src={auth?.currentUser?.photoURL}
+        width='60px'
+        height='60px'
+      />
     </nav>
   )
 }
